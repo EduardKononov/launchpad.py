@@ -1,8 +1,7 @@
 import sys
 import array
 
-from pygame import midi
-from pygame import time
+from pygame import midi, time
 
 try:
     from launchpad_py.charset import *
@@ -209,7 +208,7 @@ class LaunchpadBase(object):
         if self.idOut is None or self.idIn is None:
             return False
 
-        if self.midi.OpenOutput(self.idOut) == False:
+        if not self.midi.OpenOutput(self.idOut):
             return False
 
         return self.midi.OpenInput(self.idIn)
@@ -651,7 +650,13 @@ class LaunchpadPro(LaunchpadBase):
     #        +---+---+---+---+---+---+---+---+
     #
 
-    COLORS = {'black': 0, 'off': 0, 'white': 3, 'red': 5, 'green': 17}
+    COLORS = {
+        'black': 0,
+        'off': 0,
+        'white': 3,
+        'red': 5,
+        'green': 17,
+    }
 
     # -------------------------------------------------------------------------------------
     # -- Opens one of the attached Launchpad MIDI devices.
@@ -660,7 +665,7 @@ class LaunchpadPro(LaunchpadBase):
     # Overrides "LaunchpadBase" method
     def Open(self, number=0, name="Pro"):
         retval = super(LaunchpadPro, self).Open(number=number, name=name)
-        if retval == True:
+        if retval:
             # avoid sending this to an Mk2
             if name.lower() == "pro":
                 self.LedSetMode(0)
