@@ -3,6 +3,8 @@ import array
 
 from pygame import midi
 
+__all__ = ['Midi']
+
 
 class Midi:
     """

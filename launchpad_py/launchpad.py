@@ -2,7 +2,7 @@ import sys
 
 from pygame import time
 
-from launchpad_py.midi import Midi
+from launchpad_py.launchpad_base import LaunchpadBase
 
 try:
     from launchpad_py.charset import *
@@ -11,90 +11,6 @@ except ImportError:
         from charset import *
     except ImportError:
         sys.exit("error loading Launchpad charset")
-
-
-class LaunchpadBase(object):
-
-    def __init__(self):
-        self.midi = Midi()  # midi interface instance (singleton)
-        self.idOut = None  # midi id for output
-        self.idIn = None  # midi id for input
-
-        # scroll directions
-        self.SCROLL_NONE = 0
-        self.SCROLL_LEFT = -1
-        self.SCROLL_RIGHT = 1
-
-    # LOL; That fixes a years old bug. Officially an idiot now :)
-    def __del__(self):
-        self.Close()
-
-    # -------------------------------------------------------------------------------------
-    # -- Opens one of the attached Launchpad MIDI devices.
-    # -------------------------------------------------------------------------------------
-    def Open(self, number=0, name="Launchpad"):
-        self.idOut = self.midi.SearchDevice(name, True, False, number=number)
-        self.idIn = self.midi.SearchDevice(name, False, True, number=number)
-
-        if self.idOut is None or self.idIn is None:
-            return False
-
-        if not self.midi.OpenOutput(self.idOut):
-            return False
-
-        return self.midi.OpenInput(self.idIn)
-
-    # -------------------------------------------------------------------------------------
-    # -- Checks if a device exists, but does not open it.
-    # -- Does not check whether a device is in use or other, strange things...
-    # -------------------------------------------------------------------------------------
-    def Check(self, number=0, name="Launchpad"):
-        self.idOut = self.midi.SearchDevice(name, True, False, number=number)
-        self.idIn = self.midi.SearchDevice(name, False, True, number=number)
-
-        if self.idOut is None or self.idIn is None:
-            return False
-
-        return True
-
-    # -------------------------------------------------------------------------------------
-    # -- Closes this device
-    # -------------------------------------------------------------------------------------
-    def Close(self):
-        self.midi.CloseInput()
-        self.midi.CloseOutput()
-
-    # -------------------------------------------------------------------------------------
-    # -- prints a list of all devices to the console (for debug)
-    # -------------------------------------------------------------------------------------
-    def ListAll(self, searchString=''):
-        self.midi.SearchDevices(searchString, True, True, False)
-
-    # -------------------------------------------------------------------------------------
-    # -- Clears the button buffer (The Launchpads remember everything...)
-    # -- Because of empty reads (timeouts), there's nothing more we can do here, but
-    # -- repeat the polls and wait a little...
-    # -------------------------------------------------------------------------------------
-    def ButtonFlush(self):
-        doReads = 0
-        # wait for that amount of consecutive read fails to exit
-        while doReads < 3:
-            if self.midi.ReadCheck():
-                doReads = 0
-                self.midi.ReadRaw()
-            else:
-                doReads += 1
-                time.wait(5)
-
-    # -------------------------------------------------------------------------------------
-    # -- Returns a list of all MIDI events, empty list if nothing happened.
-    # -- Useful for debugging or checking new devices.
-    # -------------------------------------------------------------------------------------
-    def EventRaw(self):
-        if self.midi.ReadCheck():
-            return self.midi.ReadRaw()
-        else:
-            return []
 
 
 ########################################################################################
