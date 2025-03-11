@@ -10,6 +10,8 @@
 
 import sys
 
+import launchpad_py.launchpad
+
 try:
 	import launchpad_py as launchpad
 except ImportError:
@@ -27,7 +29,7 @@ def main():
 	mode = None
 
 	# create an instance
-	lp = launchpad.Launchpad()
+	lp = launchpad_py.launchpad.Launchpad()
 
 	# check what we have here and override lp if necessary
 	if lp.Check( 0, "pad pro" ):

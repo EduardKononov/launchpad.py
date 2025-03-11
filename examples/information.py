@@ -12,6 +12,8 @@ import os
 import platform
 import struct
 
+import launchpad_py.launchpad
+
 try:
 	import pygame
 except ImportError:
@@ -33,7 +35,7 @@ except ImportError:
 def main():
 
 	# create an instance
-	lp = launchpad.Launchpad()
+	lp = launchpad_py.launchpad.Launchpad()
 
 	# some basic info
 	print( "\nRunning..." )

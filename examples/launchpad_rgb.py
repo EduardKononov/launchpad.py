@@ -9,6 +9,8 @@
 
 import sys
 
+import launchpad_py.launchpad
+
 try:
 	import launchpad_py as launchpad
 except ImportError:
@@ -37,7 +39,7 @@ def main():
 	print( " - PyGame " + str( pygame.ver ) )
 
 	# create an instance
-	lp = launchpad.Launchpad()
+	lp = launchpad_py.launchpad.Launchpad()
 
 	# try the first Mk2
 	if lp.Check( 0, "mk2" ):

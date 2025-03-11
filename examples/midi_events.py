@@ -15,6 +15,8 @@
 
 import sys
 
+import launchpad_py.launchpad
+
 try:
 	import launchpad_py as launchpad
 except ImportError:
@@ -39,7 +41,7 @@ def cmdInput( prompt ):
 
 def main():
 
-	lp = launchpad.Launchpad()
+	lp = launchpad_py.launchpad.Launchpad()
 
 	print("===\nAvailable MIDI devices:")
 	lp.ListAll(  )

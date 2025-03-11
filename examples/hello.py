@@ -11,6 +11,8 @@
 
 import sys
 
+import launchpad_py.launchpad
+
 try:
 	import launchpad_py as launchpad
 except ImportError:
@@ -89,7 +91,7 @@ def main():
 			mode = "MF64"
 
 	else:
-		lp = launchpad.Launchpad()
+		lp = launchpad_py.launchpad.Launchpad()
 		if lp.Open():
 			print("Launchpad Mk1/S/Mini")
 			mode = "Mk1"

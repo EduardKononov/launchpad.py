@@ -12,6 +12,7 @@
 import sys
 import time
 
+import launchpad_py.launchpad
 
 try:
 	import launchpad_py as launchpad
@@ -80,8 +81,8 @@ def main():
 			print("Midi Fighter 64")
 			mode = "F64"
 
-	elif launchpad.Launchpad().Check( 0 ):
-		lp = launchpad.Launchpad()
+	elif launchpad_py.launchpad.Launchpad().Check(0):
+		lp = launchpad_py.launchpad.Launchpad()
 		if lp.Open( 0 ):
 			print("Launchpad Mk1/S/Mini")
 			mode = "Mk1"
