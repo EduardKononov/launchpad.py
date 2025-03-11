@@ -10,6 +10,8 @@
 
 import sys
 
+import launchpad_py.launchpad_pro
+
 try:
 	import launchpad_py as launchpad
 except ImportError:
@@ -23,7 +25,7 @@ def main():
 
 	mode = None
 
-	lp = launchpad.LaunchpadPro()
+	lp = launchpad_py.launchpad_pro.LaunchpadPro()
 	if lp.Check( 0 ):
 		if lp.Open( 0 ):
 			mode = "pro"

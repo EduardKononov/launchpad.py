@@ -13,6 +13,7 @@ import sys
 import time
 
 import launchpad_py.launchpad
+import launchpad_py.launchpad_pro
 
 try:
 	import launchpad_py as launchpad
@@ -27,8 +28,8 @@ def main():
 
 	mode = None
 
-	if launchpad.LaunchpadPro().Check( 0 ):
-		lp = launchpad.LaunchpadPro()
+	if launchpad_py.launchpad_pro.LaunchpadPro().Check(0):
+		lp = launchpad_py.launchpad_pro.LaunchpadPro()
 		if lp.Open( 0 ):
 			print("Launchpad Pro")
 			mode = "Pro"

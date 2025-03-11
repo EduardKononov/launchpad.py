@@ -11,6 +11,7 @@
 import sys
 
 import launchpad_py.launchpad
+import launchpad_py.launchpad_pro
 
 try:
 	import launchpad_py as launchpad
@@ -33,7 +34,7 @@ def main():
 
 	# check what we have here and override lp if necessary
 	if lp.Check( 0, "pad pro" ):
-		lp = launchpad.LaunchpadPro()
+		lp = launchpad_py.launchpad_pro.LaunchpadPro()
 		if lp.Open(0,"pad pro"):
 			print("Launchpad Pro")
 			mode = "Pro"

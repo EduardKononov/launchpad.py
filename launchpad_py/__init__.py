@@ -1,7 +1,6 @@
-# more specific selections for Python 3 (ASkr, 2/2018)
 from launchpad_py.launchpad import Launchpad
 from launchpad_py.launchpad_to_refactor import LaunchpadMk2
-from launchpad_py.launchpad_to_refactor import LaunchpadPro
+from launchpad_py.launchpad_pro import LaunchpadPro
 from launchpad_py.launchpad_to_refactor import LaunchControlXL
 from launchpad_py.launchpad_to_refactor import LaunchControl
 from launchpad_py.launchpad_to_refactor import LaunchKeyMini
