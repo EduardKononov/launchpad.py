@@ -27,17 +27,17 @@ def main():
 
 	mode = None
 
-	if launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().Check(0):
+	if launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().check(0):
 		lp = launchpad_py.launchpad_pro_mk3.LaunchpadProMk3()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			mode = "promk3"
-	elif launchpad_py.launchpad_pro.LaunchpadPro().Check(0):
+	elif launchpad_py.launchpad_pro.LaunchpadPro().check(0):
 		lp = launchpad_py.launchpad_pro.LaunchpadPro()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			mode = "pro"
-	elif launchpad_py.launchpad_lpx.LaunchpadLPX().Check (1):
+	elif launchpad_py.launchpad_lpx.LaunchpadLPX().check (1):
 		lp = launchpad_py.launchpad_lpx.LaunchpadLPX()
-		if lp.Open( 1 ):
+		if lp.open(1):
 			mode = "lpx"
 
 	if mode is None:

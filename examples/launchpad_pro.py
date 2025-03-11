@@ -42,14 +42,14 @@ def main():
 	lp = launchpad_py.launchpad_pro.LaunchpadPro()
 
 	# open the first Launchpad Pro
-	if lp.Open( 0, "pad pro" ):
+	if lp.open(0, "pad pro"):
 		print( " - Launchpad Pro: OK" )
 	else:
 		print( " - Launchpad Pro: ERROR" )
 		return
 
 	# Clear the buffer because the Launchpad remembers everything
-	lp.ButtonFlush()
+	lp.flush_buttons()
 
 	# List the class's methods
 	print( " - Available methods:" )
@@ -140,11 +140,11 @@ def main():
 
 	# turn all LEDs off
 	print( " - Testing Reset()" )
-	lp.Reset()
+	lp.reset()
 
 	# close this instance
 	print( " - More to come, goodbye...\n" )
-	lp.Close()
+	lp.close()
 
 	
 if __name__ == '__main__':

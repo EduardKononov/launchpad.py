@@ -38,21 +38,21 @@ class LaunchKeyMini(LaunchpadBase):
 
     """
 
-    def Open(self, number=0, name="LaunchKey"):
+    def open(self, number=0, name="LaunchKey"):
         """
         Opens one of the attached LaunchKey devices.
         Uses search string "LaunchKey", by default.
         """
-        retval = super(LaunchKeyMini, self).Open(number=number, name=name)
+        retval = super(LaunchKeyMini, self).open(number=number, name=name)
         return retval
 
-    def Check(self, number=0, name="LaunchKey"):
+    def check(self, number=0, name="LaunchKey"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
         Uses search string "LaunchKey", by default.
         """
-        return super(LaunchKeyMini, self).Check(number=number, name=name)
+        return super(LaunchKeyMini, self).check(number=number, name=name)
 
     def InputStateRaw(self):
         """
@@ -99,7 +99,7 @@ class LaunchKeyMini(LaunchpadBase):
         """
         Clears the input buffer (The Launchpads remember everything...)
         """
-        return self.ButtonFlush()
+        return self.flush_buttons()
 
     def InputChanged(self):
         """

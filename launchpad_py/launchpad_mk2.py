@@ -64,20 +64,20 @@ class LaunchpadMk2(LaunchpadPro):
            +---+---+---+---+---+---+---+---+  +---+
     """
 
-    def Open(self, number=0, name="Mk2"):
+    def open(self, number=0, name="Mk2"):
         """
         Opens one of the attached Launchpad MIDI devices.
         Uses search string "Mk2", by default.
         """
-        return super(LaunchpadMk2, self).Open(number=number, name=name)
+        return super(LaunchpadMk2, self).open(number=number, name=name)
 
-    def Check(self, number=0, name="Mk2"):
+    def check(self, number=0, name="Mk2"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
         Uses search string "Mk2", by default.
         """
-        return super(LaunchpadMk2, self).Check(number=number, name=name)
+        return super(LaunchpadMk2, self).check(number=number, name=name)
 
     def LedAllOn(self, colorcode=None):
         """
@@ -93,7 +93,7 @@ class LaunchpadMk2(LaunchpadPro):
 
         self.midi.RawWriteSysEx([0, 32, 41, 2, 24, 14, colorcode])
 
-    def Reset(self):
+    def reset(self):
         """
         (fake to) reset the Launchpad
         Turns off all LEDs

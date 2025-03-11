@@ -68,20 +68,20 @@ class MidiFighter64(LaunchpadBase):
 
         super(MidiFighter64, self).__init__()
 
-    def Open(self, number=0, name="Fighter 64"):
+    def open(self, number=0, name="Fighter 64"):
         """
         Opens one of the attached Launchpad MIDI devices.
         Uses search string "Fighter 64", by default.
         """
-        return super(MidiFighter64, self).Open(number=number, name=name)
+        return super(MidiFighter64, self).open(number=number, name=name)
 
-    def Check(self, number=0, name="Fighter 64"):
+    def check(self, number=0, name="Fighter 64"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
         Uses search string "Fighter 64", by default.
         """
-        return super(MidiFighter64, self).Check(number=number, name=name)
+        return super(MidiFighter64, self).check(number=number, name=name)
 
     def LedCtrlRaw(self, number, color, mode=None):
         """

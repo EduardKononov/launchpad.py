@@ -56,22 +56,22 @@ class MidiFighter3D(MidiFighter64):
                +---+---+---+---+
     """
 
-    def Open(self, number=0, name="Fighter 3D"):
+    def open(self, number=0, name="Fighter 3D"):
         """
         Opens one of the attached Launchpad MIDI devices.
         Uses search string "Fighter 3D", by default.
         """
 
-        return super(MidiFighter3D, self).Open(number=number, name=name)
+        return super(MidiFighter3D, self).open(number=number, name=name)
 
-    def Check(self, number=0, name="Fighter 3D"):
+    def check(self, number=0, name="Fighter 3D"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
         Uses search string "Fighter 3D", by default.
         """
 
-        return super(MidiFighter3D, self).Check(number=number, name=name)
+        return super(MidiFighter3D, self).check(number=number, name=name)
 
     def ButtonStateRaw(self):
         """

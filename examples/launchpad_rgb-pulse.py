@@ -36,28 +36,28 @@ def main():
 	lp = launchpad_py.launchpad.Launchpad()
 
 	# check what we have here and override lp if necessary
-	if lp.Check( 0, "pad pro" ):
+	if lp.check(0, "pad pro"):
 		lp = launchpad_py.launchpad_pro.LaunchpadPro()
-		if lp.Open(0,"pad pro"):
+		if lp.open(0, "pad pro"):
 			print("Launchpad Pro")
 			mode = "Pro"
 
-	elif lp.Check( 0, "promk3" ):
+	elif lp.check(0, "promk3"):
 		lp = launchpad_py.launchpad_pro_mk3.LaunchpadProMk3()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Launchpad Pro Mk3")
 			mode = "ProMk3"
 			
 
-	elif lp.Check( 1, "minimk3" ):
+	elif lp.check(1, "minimk3"):
 		lp = launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3()
-		if lp.Open( 1, "minimk3" ):
+		if lp.open(1, "minimk3"):
 			print("Launchpad Mk3")
 			mode = "Mk3"
 
-	elif lp.Check( 1, "launchpad x" ) or lp.Check( 1, "lpx" ):
+	elif lp.check(1, "launchpad x") or lp.check(1, "lpx"):
 		lp = launchpad_py.launchpad_lpx.LaunchpadLPX()
-		if lp.Open( 1 ):
+		if lp.open(1):
 			print("Launchpad X")
 			mode = "LPX"
 
@@ -66,7 +66,7 @@ def main():
 		return
 
 	# set flashing/pulsing frequency to 240bpm
-	lp.LedCtrlBpm(240)
+	lp.led_ctrl_bpm(240)
 
 	# stupid lightshow from here on...
 	for y in range(8):
@@ -100,8 +100,8 @@ def main():
 	time.wait(3000)
 
 
-	lp.Reset() # turn all LEDs off
-	lp.Close() # close the Launchpad (will quit with an error due to a PyGame bug)
+	lp.reset() # turn all LEDs off
+	lp.close() # close the Launchpad (will quit with an error due to a PyGame bug)
 
 	
 if __name__ == '__main__':

@@ -49,7 +49,7 @@ def main():
 
 	# print list of attached MIDI devices
 	print( "\nAvailable MIDI devices:" )
-	lp.ListAll()
+	lp.list_all()
 
 	# print list of attached MIDI devices
 	print( "\n\ngoodbye ..." )

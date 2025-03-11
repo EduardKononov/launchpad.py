@@ -32,23 +32,23 @@ class Dicer(LaunchpadBase):
 
     """
 
-    def Open(self, number=0, name="Dicer"):
+    def open(self, number=0, name="Dicer"):
         """
         Opens one of the attached Dicer devices.
         Uses search string "dicer", by default.
         """
-        retval = super(Dicer, self).Open(number=number, name=name)
+        retval = super(Dicer, self).open(number=number, name=name)
         return retval
 
-    def Check(self, number=0, name="Dicer"):
+    def check(self, number=0, name="Dicer"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
         Uses search string "dicer", by default.
         """
-        return super(Dicer, self).Check(number=number, name=name)
+        return super(Dicer, self).check(number=number, name=name)
 
-    def Reset(self):
+    def reset(self):
         """
         reset the Dicer
         Turns off all LEDs, restores power-on state, but does not disable an active light show.

@@ -113,31 +113,29 @@ class LaunchpadPro(LaunchpadBase):
         'green': 17,
     }
 
-    def Open(self, number=0, name="Pro"):
+    def open(self, number=0, name="Pro"):
         """
         Opens one of the attached Launchpad MIDI devices.
         Uses search string "Pro", by default.
         """
-        retval = super(LaunchpadPro, self).Open(number=number, name=name)
+        retval = super(LaunchpadPro, self).open(number=number, name=name)
         if retval:
             # avoid sending this to an Mk2
             if name.lower() == "pro":
-                self.LedSetMode(0)
+                self.set_mode(0)
 
         return retval
 
-    def Check(self, number=0, name="Launchpad Pro"):
+    def check(self, number=0, name="Launchpad Pro"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
         Uses search string "Launchpad Pro", by default.
         """
 
-        return super(LaunchpadPro, self).Check(number=number, name=name)
+        return super(LaunchpadPro, self).check(number=number, name=name)
 
-    # TODO: ASkr, Undocumented!
-    # TODO: return value
-    def LedSetLayout(self, mode) -> None:
+    def set_layout(self, mode) -> None:
         """
         Sets the button layout (and codes) to the set, specified by <mode>.
         Valid options:
@@ -153,7 +151,7 @@ class LaunchpadPro(LaunchpadBase):
         self.midi.RawWriteSysEx([0, 32, 41, 2, 16, 34, mode])
         time.wait(10)
 
-    def LedSetMode(self, mode):
+    def set_mode(self, mode):
         """
         Selects the Pro's mode.
         <mode> -> 0 -> "Ableton Live mode"  (what we need)
@@ -166,12 +164,12 @@ class LaunchpadPro(LaunchpadBase):
         self.midi.RawWriteSysEx([0, 32, 41, 2, 16, 33, mode])
         time.wait(10)
 
-    def LedCtrlBpm(self, bpm):
+    def led_ctrl_bpm(self, bpm):
         """
         Sets BPM for pulsing or flashing LEDs
         EXPERIMENTAL FAKE SHOW
         The Launchpad Pro (and Mk2) derive the LED's pulsing or flashing frequency from
-        the repetive occurrence of MIDI beat clock messages (msg 248), 24 per beat.
+        the repetitive occurrence of MIDI beat clock messages (msg 248), 24 per beat.
         No timers/events here yet, so we fake it by sending the minimal amount of
         messages (25 for Pro, 26 for Mk2 (not kidding) => 28, probably safe value) once.
         The Pro and the Mk2 support 40..240 BPM, so the maximum time we block everything
@@ -191,7 +189,8 @@ class LaunchpadPro(LaunchpadBase):
             self.midi.RawWrite(248, 0, 0)
             time.wait(td)
 
-    def LedGetColorByName(self, name):
+    @staticmethod
+    def get_color_by_name(name):
         """
         Returns an RGB colorcode by trying to find a color of a name given by string <name>.
         If nothing was found, Code 'black' (off) is returned.
@@ -209,7 +208,7 @@ class LaunchpadPro(LaunchpadBase):
         """
         Controls a grid LED by its position <number> and a color, specified by
         <red>, <green> and <blue> intensities, with can each be an integer between 0..63.
-        If <blue> is omitted, this methos runs in "Classic" compatibility mode and the
+        If <blue> is omitted, this method runs in "Classic" compatibility mode and the
         intensities, which were within 0..3 in that mode, are multiplied by 21 (0..63)
         to emulate the old brightness feeling :)
         Notice that each message requires 10 bytes to be sent. For a faster, but
@@ -479,7 +478,7 @@ class LaunchpadPro(LaunchpadBase):
 
         self.midi.RawWriteSysEx([0, 32, 41, 2, 16, 14, colorcode])
 
-    def Reset(self):
+    def reset(self):
         """
         (fake to) reset the Launchpad
         Turns off all LEDs

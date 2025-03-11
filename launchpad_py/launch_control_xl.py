@@ -63,7 +63,7 @@ class LaunchControlXL(LaunchpadBase):
         +---+---+---+---+---+---+---+---+
     """
 
-    def Open(self, number=0, name="Control XL", template=1):
+    def open(self, number=0, name="Control XL", template=1):
         """
         Opens one of the attached Control XL MIDI devices.
         Uses search string "Control XL", by default.
@@ -82,19 +82,19 @@ class LaunchControlXL(LaunchpadBase):
 
         self.UserTemplate = template
 
-        retval = super(LaunchControlXL, self).Open(number=number, name=name)
+        retval = super(LaunchControlXL, self).open(number=number, name=name)
         if retval == True:
             self.TemplateSet(self.UserTemplate)
 
         return retval
 
-    def Check(self, number=0, name="Control XL"):
+    def check(self, number=0, name="Control XL"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
         Uses search string "Pro", by default.
         """
-        return super(LaunchControlXL, self).Check(number=number, name=name)
+        return super(LaunchControlXL, self).check(number=number, name=name)
 
     def TemplateSet(self, templateNum):
         """
@@ -209,7 +209,7 @@ class LaunchControlXL(LaunchpadBase):
         """
         Clears the input buffer (The Launchpads remember everything...)
         """
-        return self.ButtonFlush()
+        return self.flush_buttons()
 
     def InputChanged(self):
         """

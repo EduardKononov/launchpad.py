@@ -44,7 +44,7 @@ def main():
 	lp = launchpad_py.launchpad.Launchpad()
 
 	print("===\nAvailable MIDI devices:")
-	lp.ListAll(  )
+	lp.list_all()
 	print("===")
 
 	print("Enter a part of the device name, that shall be monitored.")
@@ -56,7 +56,7 @@ def main():
 
 	while True:
 		print("===")
-		lp.ListAll( searchString = inName )
+		lp.list_all(searchString = inName)
 		print("===")
 		
 		inOk = cmdInput( "  ENTER to continue or new search string:" )
@@ -66,7 +66,7 @@ def main():
 			inName = inOk
 
 	try:
-		lp.Open( 0, inName )
+		lp.open(0, inName)
 	except:
 		print("error opening this device")
 		sys.exit(-1)
@@ -79,7 +79,7 @@ def main():
 	# lp.midi.RawWriteSysEx( [ 0, 32, 41, 2, 14, 14, 0 ] )  # Pro Mk3 programmer's mode OFF (Live mode)
 
 	while(True):
-		events = lp.EventRaw()
+		events = lp.read_raw_events()
 		if events != []:
 			print( events )
 

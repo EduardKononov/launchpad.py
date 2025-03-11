@@ -39,69 +39,69 @@ def main():
 	mode = None
 
 	# create an instance for the Pro
-	if launchpad_py.launchpad_pro.LaunchpadPro().Check(0):
+	if launchpad_py.launchpad_pro.LaunchpadPro().check(0):
 		lp = launchpad_py.launchpad_pro.LaunchpadPro()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Launchpad Pro")
 			mode = "Pro"
 
-	elif launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().Check(0):
+	elif launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().check(0):
 		lp = launchpad_py.launchpad_pro_mk3.LaunchpadProMk3()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Launchpad Pro Mk3")
 			mode = "ProMk3"
 
 	# experimental MK3 implementation
 	# The MK3 has two MIDI instances per device; we need the 2nd one.
 	# If you have two MK3s attached, its "1" for the first and "3" for the 2nd device
-	elif launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3().Check(1):
+	elif launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3().check(1):
 		lp = launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3()
-		if lp.Open( 1, "minimk3" ):
+		if lp.open(1, "minimk3"):
 			print("Launchpad Mini Mk3")
 			mode = "Pro"
 
 	# experimental LPX implementation
 	# Like the Mk3, the LPX also has two MIDI instances per device; we need the 2nd one.
 	# If you have two LPXs attached, its "1" for the first and "3" for the 2nd device
-	elif launchpad_py.launchpad_lpx.LaunchpadLPX().Check(1):
+	elif launchpad_py.launchpad_lpx.LaunchpadLPX().check(1):
 		lp = launchpad_py.launchpad_lpx.LaunchpadLPX()
-		if lp.Open( 1, "lpx" ):
+		if lp.open(1, "lpx"):
 			print("Launchpad X")
 			mode = "Pro"
 			
-	elif launchpad_py.launchpad_mk2.LaunchpadMk2().Check(0):
+	elif launchpad_py.launchpad_mk2.LaunchpadMk2().check(0):
 		lp = launchpad_py.launchpad_mk2.LaunchpadMk2()
-		if lp.Open( 0, "mk2" ):
+		if lp.open(0, "mk2"):
 			print("Launchpad Mk2")
 			mode = "Mk2"
 
-	elif launchpad_py.launch_control_xl.LaunchControlXL().Check(0):
+	elif launchpad_py.launch_control_xl.LaunchControlXL().check(0):
 		lp = launchpad_py.launch_control_xl.LaunchControlXL()
-		if lp.Open( 0, "control xl" ):
+		if lp.open(0, "control xl"):
 			print("Launch Control XL")
 			mode = "XL"
 			
-	elif launchpad_py.launch_key_mini.LaunchKeyMini().Check(0):
+	elif launchpad_py.launch_key_mini.LaunchKeyMini().check(0):
 		lp = launchpad_py.launch_key_mini.LaunchKeyMini()
-		if lp.Open( 0, "launchkey" ):
+		if lp.open(0, "launchkey"):
 			print("LaunchKey (Mini)")
 			mode = "LKM"
 
-	elif launchpad_py.dicer.Dicer().Check(0):
+	elif launchpad_py.dicer.Dicer().check(0):
 		lp = launchpad_py.dicer.Dicer()
-		if lp.Open( 0, "dicer" ):
+		if lp.open(0, "dicer"):
 			print("Dicer")
 			mode = "Dcr"
 
-	elif launchpad_py.midi_fighter64.MidiFighter64().Check(0):
+	elif launchpad_py.midi_fighter64.MidiFighter64().check(0):
 		lp = launchpad_py.midi_fighter64.MidiFighter64()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Midi Fighter 64")
 			mode = "MF64"
 
 	else:
 		lp = launchpad_py.launchpad.Launchpad()
-		if lp.Open():
+		if lp.open():
 			print("Launchpad Mk1/S/Mini")
 			mode = "Mk1"
 
@@ -133,7 +133,7 @@ def main():
 		print("(or power-cycle the unit...).")
 
 	# Clear the buffer because the Launchpad remembers everything :-)
-	lp.ButtonFlush()
+	lp.flush_buttons()
 
 	# Lightshow
 	if mode == "XL" or mode == "LKM":
@@ -169,8 +169,8 @@ def main():
 	# now quit...
 	print("Quitting might raise a 'Bad Pointer' error (~almost~ nothing to worry about...:).\n\n")
 
-	lp.Reset() # turn all LEDs off
-	lp.Close() # close the Launchpad (will quit with an error due to a PyGame bug)
+	lp.reset() # turn all LEDs off
+	lp.close() # close the Launchpad (will quit with an error due to a PyGame bug)
 
 	
 if __name__ == '__main__':

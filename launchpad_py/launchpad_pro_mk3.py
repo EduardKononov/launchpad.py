@@ -104,29 +104,29 @@ class LaunchpadProMk3(LaunchpadPro):
            +---+---+---+---+---+---+---+---+
     """
 
-    def Open(self, number=0, name="ProMk3"):
+    def open(self, number=0, name="ProMk3"):
         """
         Opens one of the attached Launchpad MIDI devices.
         Uses search string "ProMK3", by default.
         """
 
-        retval = super(LaunchpadProMk3, self).Open(number=number, name=name)
+        retval = super(LaunchpadProMk3, self).open(number=number, name=name)
         if retval:
             # enable Programmer's mode
-            self.LedSetMode(1)
+            self.set_mode(1)
 
         return retval
 
-    def Check(self, number=0, name="ProMk3"):
+    def check(self, number=0, name="ProMk3"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
         Uses search string "ProMk3", by default.
         """
 
-        return super(LaunchpadProMk3, self).Check(number=number, name=name)
+        return super(LaunchpadProMk3, self).check(number=number, name=name)
 
-    def LedSetMode(self, mode):
+    def set_mode(self, mode):
         """
         Selects the ProMk3's mode.
         <mode> -> 0 -> "Ableton Live mode"
@@ -267,15 +267,7 @@ class LaunchpadProMk3(LaunchpadPro):
         else:
             return []
 
-    def Reset(self):
-        """
-        (fake to) reset the Launchpad
-        Turns off all LEDs
-        """
-
-        self.LedAllOn(0)
-
-    def Close(self):
+    def close(self):
         """
         Go back to custom modes before closing connection
         Otherwise Launchpad will stuck in programmer mode
@@ -283,7 +275,7 @@ class LaunchpadProMk3(LaunchpadPro):
 
         # re-enter Live mode
         if self.midi.devIn is not None and self.midi.devOut is not None:
-            self.LedSetMode(0)
+            self.set_mode(0)
     # TODO: redundant (but needs fix for Py2 embedded anyway)
     # self.midi.CloseInput()
     # self.midi.CloseOutput()

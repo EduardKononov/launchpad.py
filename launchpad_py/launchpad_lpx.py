@@ -12,7 +12,7 @@ class LaunchpadLPX(LaunchpadPro):
 
     #	COLORS = {'black':0, 'off':0, 'white':3, 'red':5, 'green':17 }
 
-    def Open(self, number=0, name="AUTO"):
+    def open(self, number=0, name="AUTO"):
         """
         Opens one of the attached Launchpad MIDI devices.
         This is one of the few devices that has different names in different OSs:
@@ -46,13 +46,13 @@ class LaunchpadLPX(LaunchpadPro):
             # nameList.insert( 0, name )
             nameList = [name]
         for name in nameList:
-            rval = super(LaunchpadLPX, self).Open(number=number, name=name)
+            rval = super(LaunchpadLPX, self).open(number=number, name=name)
             if rval:
-                self.LedSetMode(1)
+                self.set_mode(1)
                 return rval
         return False
 
-    def Check(self, number=0, name="AUTO"):
+    def check(self, number=0, name="AUTO"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
@@ -65,14 +65,14 @@ class LaunchpadLPX(LaunchpadPro):
             # nameList.insert( 0, name )
             nameList = [name]
         for name in nameList:
-            rval = super(LaunchpadLPX, self).Check(number=number, name=name)
+            rval = super(LaunchpadLPX, self).check(number=number, name=name)
             if rval:
                 return rval
         return False
 
     # TODO: ASkr, Undocumented!
     # TODO: return value
-    def LedSetLayout(self, mode):
+    def set_layout(self, mode):
         """
         Sets the button layout (and codes) to the set, specified by <mode>.
         Valid options:
@@ -86,7 +86,7 @@ class LaunchpadLPX(LaunchpadPro):
         self.midi.RawWriteSysEx([0, 32, 41, 2, 12, 0, mode])
         time.wait(10)
 
-    def LedSetMode(self, mode):
+    def set_mode(self, mode):
         """
         Selects the LPX's mode.
         <mode> -> 0 -> "Ableton Live mode"
@@ -104,7 +104,7 @@ class LaunchpadLPX(LaunchpadPro):
         """
         Sets the button layout to "Session" mode.
         """
-        self.LedSetLayout(0)
+        self.set_layout(0)
 
     def LedCtrlRaw(self, number, red, green, blue=None):
         """
@@ -188,14 +188,14 @@ class LaunchpadLPX(LaunchpadPro):
             for y in range(9):
                 self.midi.RawWrite(144, (x + 1) + ((y + 1) * 10), colorcode)
 
-    def Reset(self):
+    def reset(self):
         """
         (fake to) reset the Launchpad
         Turns off all LEDs
         """
         self.LedAllOn(0)
 
-    def Close(self):
+    def close(self):
         """
         Go back to custom modes before closing connection
         Otherwise Launchpad will stuck in programmer mode

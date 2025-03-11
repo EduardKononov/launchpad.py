@@ -22,11 +22,11 @@ except ImportError:
 
 def main():
 
-	if launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().Check(0):
+	if launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().check(0):
 		lp = launchpad_py.launchpad_pro_mk3.LaunchpadProMk3()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Launchpad Pro Mk3 found")
-			lp.Close()
+			lp.close()
 	else:
 		print("Meh, did not find a Launchpad Pro Mk3")
 

@@ -64,28 +64,28 @@ class LaunchpadMiniMk3(LaunchpadPro):
 
     #	COLORS = {'black':0, 'off':0, 'white':3, 'red':5, 'green':17 }
 
-    def Open(self, number=0, name="MiniMK3"):
+    def open(self, number=0, name="MiniMK3"):
         """
         Opens one of the attached Launchpad MIDI devices.
         Uses search string "MiniMk3", by default.
         """
-        retval = super(LaunchpadMiniMk3, self).Open(number=number, name=name)
+        retval = super(LaunchpadMiniMk3, self).open(number=number, name=name)
         if retval == True:
-            self.LedSetMode(1)
+            self.set_mode(1)
 
         return retval
 
-    def Check(self, number=0, name="MiniMK3"):
+    def check(self, number=0, name="MiniMK3"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
         Uses search string "MiniMk3", by default.
         """
-        return super(LaunchpadMiniMk3, self).Check(number=number, name=name)
+        return super(LaunchpadMiniMk3, self).check(number=number, name=name)
 
     # TODO: ASkr, Undocumented!
     # TODO: return value
-    def LedSetLayout(self, mode):
+    def set_layout(self, mode):
         """
         Sets the button layout (and codes) to the set, specified by <mode>.
         Valid options:
@@ -100,7 +100,7 @@ class LaunchpadMiniMk3(LaunchpadPro):
         self.midi.RawWriteSysEx([0, 32, 41, 2, 13, 0, mode])
         time.wait(10)
 
-    def LedSetMode(self, mode):
+    def set_mode(self, mode):
         """
         Selects the Mk3's mode.
         <mode> -> 0 -> "Ableton Live mode"
@@ -117,7 +117,7 @@ class LaunchpadMiniMk3(LaunchpadPro):
         """
         Sets the button layout to "Session" mode.
         """
-        self.LedSetLayout(0)
+        self.set_layout(0)
 
     def LedCtrlRaw(self, number, red, green, blue=None):
         """
@@ -201,14 +201,14 @@ class LaunchpadMiniMk3(LaunchpadPro):
             for y in range(9):
                 self.midi.RawWrite(144, (x + 1) + ((y + 1) * 10), colorcode)
 
-    def Reset(self):
+    def reset(self):
         """
         (fake to) reset the Launchpad
         Turns off all LEDs
         """
         self.LedAllOn(0)
 
-    def Close(self):
+    def close(self):
         """
         Go back to custom modes before closing connection
         Otherwise Launchpad will stuck in programmer mode

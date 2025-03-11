@@ -34,33 +34,33 @@ def main():
 
 	mode = None
 
-	if launchpad_py.launchpad_pro.LaunchpadPro().Check(0):
+	if launchpad_py.launchpad_pro.LaunchpadPro().check(0):
 		lp = launchpad_py.launchpad_pro.LaunchpadPro()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Launchpad Pro")
 			mode = "Pro"
 
-	elif launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().Check(0):
+	elif launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().check(0):
 		lp = launchpad_py.launchpad_pro_mk3.LaunchpadProMk3()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Launchpad Pro Mk3")
 			mode = "ProMk3"
 
-	elif launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3().Check(1):
+	elif launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3().check(1):
 		lp = launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3()
-		if lp.Open( 1 ):
+		if lp.open(1):
 			print("Launchpad Mini Mk3")
 			mode = "MiniMk3"
 
-	elif launchpad_py.launchpad_lpx.LaunchpadLPX().Check(1):
+	elif launchpad_py.launchpad_lpx.LaunchpadLPX().check(1):
 		lp = launchpad_py.launchpad_lpx.LaunchpadLPX()
-		if lp.Open( 1 ):
+		if lp.open(1):
 			print("Launchpad X")
 			mode = "LPX"
 			
-	elif launchpad_py.launchpad_mk2.LaunchpadMk2().Check(0):
+	elif launchpad_py.launchpad_mk2.LaunchpadMk2().check(0):
 		lp = launchpad_py.launchpad_mk2.LaunchpadMk2()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Launchpad Mk2")
 			mode = "Mk2"
 
@@ -76,21 +76,21 @@ def main():
 	# 		print("LaunchKey (Mini)")
 	# 		mode = "LKM"
 
-	elif launchpad_py.dicer.Dicer().Check(0):
+	elif launchpad_py.dicer.Dicer().check(0):
 		lp = launchpad_py.dicer.Dicer()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Dicer")
 			mode = "Dcr"
 
-	elif launchpad_py.midi_fighter64.MidiFighter64().Check(0):
+	elif launchpad_py.midi_fighter64.MidiFighter64().check(0):
 		lp = launchpad_py.midi_fighter64.MidiFighter64()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Midi Fighter 64")
 			mode = "F64"
 
-	elif launchpad_py.launchpad.Launchpad().Check(0):
+	elif launchpad_py.launchpad.Launchpad().check(0):
 		lp = launchpad_py.launchpad.Launchpad()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Launchpad Mk1/S/Mini")
 			mode = "Mk1"
 
@@ -122,8 +122,8 @@ def main():
 
 	print("bye ...")
 
-	lp.Reset() # turn all LEDs off
-	lp.Close() # close the Launchpad (will quit with an error due to a PyGame bug)
+	lp.reset() # turn all LEDs off
+	lp.close() # close the Launchpad (will quit with an error due to a PyGame bug)
 
 	
 if __name__ == '__main__':

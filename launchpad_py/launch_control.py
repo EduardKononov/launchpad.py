@@ -35,7 +35,7 @@ class LaunchControl(LaunchControlXL):
         +---+---+---+---+---+---+---+---+  +---++---+
     """
 
-    def Open(self, number=0, name="Control MIDI", template=1):
+    def open(self, number=0, name="Control MIDI", template=1):
         """
         Opens one of the attached Control MIDI devices.
         Uses search string "Control MIDI", by default.
@@ -49,19 +49,19 @@ class LaunchControl(LaunchControlXL):
         # By default, user template 0 is enabled
         self.UserTemplate = template
 
-        retval = super(LaunchControl, self).Open(number=number, name=name)
+        retval = super(LaunchControl, self).open(number=number, name=name)
         if retval == True:
             self.TemplateSet(self.UserTemplate)
 
         return retval
 
-    def Check(self, number=0, name="Control MIDI"):
+    def check(self, number=0, name="Control MIDI"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
         Uses search string "Control MIDI", by default.
         """
-        return super(LaunchControl, self).Check(number=number, name=name)
+        return super(LaunchControl, self).check(number=number, name=name)
 
     def TemplateSet(self, templateNum):
         """

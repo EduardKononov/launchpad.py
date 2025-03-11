@@ -17,9 +17,9 @@ class LaunchpadBase(object):
         self.SCROLL_RIGHT = 1
 
     def __del__(self):
-        self.Close()
+        self.close()
 
-    def Open(self, number=0, name="Launchpad"):
+    def open(self, number=0, name="Launchpad"):
         """
         Opens one of the attached Launchpad MIDI devices.
         """
@@ -35,7 +35,7 @@ class LaunchpadBase(object):
 
         return self.midi.OpenInput(self.idIn)
 
-    def Check(self, number=0, name="Launchpad"):
+    def check(self, number=0, name="Launchpad"):
         """
         Checks if a device exists, but does not open it.
         Does not check whether a device is in use or other, strange things...
@@ -49,7 +49,7 @@ class LaunchpadBase(object):
 
         return True
 
-    def Close(self):
+    def close(self):
         """
         Closes this device
         """
@@ -57,14 +57,14 @@ class LaunchpadBase(object):
         self.midi.CloseInput()
         self.midi.CloseOutput()
 
-    def ListAll(self, searchString=''):
+    def list_all(self, searchString=''):
         """
         Prints a list of all devices to the console (for debug)
         """
 
         self.midi.SearchDevices(searchString, True, True, False)
 
-    def ButtonFlush(self):
+    def flush_buttons(self):
         """
         Clears the button buffer (The Launchpads remember everything...)
         Because of empty reads (timeouts), there's nothing more we can do here, but
@@ -81,7 +81,7 @@ class LaunchpadBase(object):
                 n_attempts += 1
                 time.wait(5)
 
-    def EventRaw(self):
+    def read_raw_events(self):
         """
         Returns a list of all MIDI events, empty list if nothing happened.
         Useful for debugging or checking new devices.

@@ -306,9 +306,9 @@ class LpDisplay():
 		lp = launchpad_py.launchpad.Launchpad()
 
 		# try the first Mk2
-		if lp.Check( 0, "mk2" ):
+		if lp.check(0, "mk2"):
 			lp = launchpad_py.launchpad_mk2.LaunchpadMk2()
-			if lp.Open( 0, "mk2" ):
+			if lp.open(0, "mk2"):
 				print( " - Launchpad Mk2: OK" )
 				self.mode = "mk2"
 			else:
@@ -316,9 +316,9 @@ class LpDisplay():
 				return
 			
 		# try the first Mini Mk3
-		elif lp.Check( 1, "minimk3" ):
+		elif lp.check(1, "minimk3"):
 			lp = launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3()
-			if lp.Open( 1, "minimk3" ):
+			if lp.open(1, "minimk3"):
 				print( " - Launchpad Mini Mk3: OK" )
 				self.mode = "mk3"
 			else:
@@ -326,9 +326,9 @@ class LpDisplay():
 				return
 
 		# try the first Pro
-		elif lp.Check( 0, "pad pro" ):
+		elif lp.check(0, "pad pro"):
 			lp = launchpad_py.launchpad_pro.LaunchpadPro()
-			if lp.Open( 0, "pad pro" ):
+			if lp.open(0, "pad pro"):
 				print( " - Launchpad Pro: OK" )
 				self.mode = "pro"
 			else:
@@ -336,9 +336,9 @@ class LpDisplay():
 				return
 
 		# try the first Pro Mk3
-		elif lp.Check( 0, "mk3" ):
+		elif lp.check(0, "mk3"):
 			lp = launchpad_py.launchpad_pro_mk3.LaunchpadProMk3()
-			if lp.Open( 0 ):
+			if lp.open(0):
 				print( " - Launchpad Pro Mk3: OK" )
 				self.mode = "promk3"
 			else:
@@ -348,10 +348,10 @@ class LpDisplay():
 		# try the first X
 		# Notice that this is already built-in in the LPX class' methods Check() and Open,
 		# but we're using the one from above!
-		elif lp.Check( 1, "Launchpad X") or lp.Check( 1, "LPX" ):
+		elif lp.check(1, "Launchpad X") or lp.check(1, "LPX"):
 			lp = launchpad_py.launchpad_lpx.LaunchpadLPX()
 			# Open() includes looking for "LPX" and "Launchpad X"
-			if lp.Open( 1 ):
+			if lp.open(1):
 				print( " - Launchpad X: OK" )
 				self.mode = "lpx"
 			else:
@@ -370,21 +370,21 @@ class LpDisplay():
 	#-------------------------------------------------------------------------------------
 	def LiveMode( self ):
 		if self.mode == "promk3":
-			self.lp.LedSetMode( 0 )
+			self.lp.set_mode(0)
 
 
 	#-------------------------------------------------------------------------------------
 	#-- 
 	#-------------------------------------------------------------------------------------
 	def Clear( self ):
-		self.lp.Reset()
+		self.lp.reset()
 
 
 	#-------------------------------------------------------------------------------------
 	#-- 
 	#-------------------------------------------------------------------------------------
 	def Close( self ):
-		self.lp.Close()
+		self.lp.close()
 
 
 	#-------------------------------------------------------------------------------------
@@ -443,7 +443,7 @@ class LpDisplay():
 	#-- 
 	#-------------------------------------------------------------------------------------
 	def ButtonFlush( self ):
-		self.lp.ButtonFlush()
+		self.lp.flush_buttons()
 
 
 ########################################################################################

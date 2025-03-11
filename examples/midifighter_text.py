@@ -27,9 +27,9 @@ def main():
 
 	mode = None
 
-	if launchpad_py.midi_fighter64.MidiFighter64().Check(0):
+	if launchpad_py.midi_fighter64.MidiFighter64().check(0):
 		lp = launchpad_py.midi_fighter64.MidiFighter64()
-		if lp.Open( 0 ):
+		if lp.open(0):
 			print("Midi Fighter 64")
 			mode = "F64"
 
@@ -53,7 +53,7 @@ def main():
 	print("bye ...")
 
 	lp.Reset() # turn all LEDs off
-	lp.Close() # close the Launchpad (will quit with an error due to a PyGame bug)
+	lp.close() # close the Launchpad (will quit with an error due to a PyGame bug)
 
 	
 if __name__ == '__main__':
