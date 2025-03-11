@@ -1,24 +1,3 @@
-#!/usr/bin/env python
-#
-# A Novation Launchpad control suite for Python.
-#
-# https://github.com/FMMT666/launchpad.py
-# 
-# FMMT666(ASkr) 01/2013..09/2019..08/2020..05/2021
-# www.askrprojects.net
-#
-#
-#
-#  >>>
-#  >>> NOTICE FOR SPACE USERS:
-#  >>>
-#  >>>  Yep, this one uses tabs. Tabs everywhere.
-#  >>>  Deal with it :-)
-#  >>>
-#
-
-import string
-import random
 import sys
 import array
 
