@@ -104,11 +104,6 @@ class LaunchpadMk2(LaunchpadPro):
 
         self.midi.RawWriteSysEx([0, 32, 41, 2, 24, 14, colorcode])
 
-    """
-    # --
-    # --
-    """
-
     def Reset(self):
         """
         (fake to) reset the Launchpad
@@ -398,8 +393,8 @@ class LaunchControlXL(LaunchpadBase):
 
     def Open(self, number=0, name="Control XL", template=1):
         """
-        # -- Opens one of the attached Control XL MIDI devices.
-        # -- Uses search string "Control XL", by default.
+        Opens one of the attached Control XL MIDI devices.
+        Uses search string "Control XL", by default.
         """
 
         # The user template number adds to the MIDI commands.
@@ -511,28 +506,26 @@ class LaunchControlXL(LaunchpadBase):
                 index = (y - 1) * 8 + x
             else:
                 return
-        # -----
         elif x == 8:
-            # ----- device, mute, solo, record
+            # device, mute, solo, record
             if y > 2:
                 index = 37 + y
-            # ----- up
+            # up
             elif y == 1:
                 index = 44
-            # ----- left
+            # left
             elif y == 2:
                 index = 46
             else:
                 return
-        # -----
         elif x == 9:
-            # ----- device, mute, solo, record
+            # device, mute, solo, record
             if y > 2:
                 index = 37 + y
-            # ----- down
+            # down
             elif y == 1:
                 index = 45
-            # ----- right
+            # right
             elif y == 2:
                 index = 47
             else:
@@ -561,21 +554,21 @@ class LaunchControlXL(LaunchpadBase):
         if self.midi.ReadCheck():
             a = self.midi.ReadRaw()
 
-            # --- pressed
+            # pressed
             if a[0][0][0] == 144:
                 return [a[0][0][1], True, 127]
-            # --- released
+            # released
             elif a[0][0][0] == 128:
                 return [a[0][0][1], False, 0]
-            # --- potentiometers and the four cursor buttons
+            # potentiometers and the four cursor buttons
             elif a[0][0][0] == 176:
-                # --- cursor buttons
+                # cursor buttons
                 if a[0][0][1] >= 104 and a[0][0][1] <= 107:
                     if a[0][0][2] > 0:
                         return [a[0][0][1], True, a[0][0][2]]
                     else:
                         return [a[0][0][1], False, 0]
-                # --- potentiometers
+                # potentiometers
                 else:
                     return [a[0][0][1], a[0][0][2], 0]
             else:
@@ -584,10 +577,6 @@ class LaunchControlXL(LaunchpadBase):
             return []
 
 
-########################################################################################
-### CLASS LaunchControl
-###
-########################################################################################
 class LaunchControl(LaunchControlXL):
     """
     For 2-color Launch Control
@@ -1206,25 +1195,25 @@ class LaunchpadLPX(LaunchpadPro):
         """
         Opens one of the attached Launchpad MIDI devices.
         This is one of the few devices that has different names in different OSs:
-        # --
-        # --   Windoze
+
+         Windows
             (b'MMSystem', b'LPX MIDI', 1, 0, 0)
             (b'MMSystem', b'MIDIIN2 (LPX MIDI)', 1, 0, 0)
             (b'MMSystem', b'LPX MIDI', 0, 1, 0)
             (b'MMSystem', b'MIDIOUT2 (LPX MIDI)', 0, 1, 0)
-        # --
+
           macOS
             (b'CoreMIDI', b'Launchpad X LPX DAW Out', 1, 0, 0)
             (b'CoreMIDI', b'Launchpad X LPX MIDI Out', 1, 0, 0)
             (b'CoreMIDI', b'Launchpad X LPX DAW In', 0, 1, 0)
             (b'CoreMIDI', b'Launchpad X LPX MIDI In', 0, 1, 0)
-        # --
+
           Linux [tm]
             ('ALSA', 'Launchpad X MIDI 1', 0, 1, 0)
             ('ALSA', 'Launchpad X MIDI 1', 1, 0, 0)
             ('ALSA', 'Launchpad X MIDI 2', 0, 1, 0)
             ('ALSA', 'Launchpad X MIDI 2', 1, 0, 0)
-        # --
+
         So the old strategy of simply looking for "LPX" will not work.
         Workaround: If the user doesn't request a specific name, we'll just
         search for "Launchpad X" and "LPX"...
