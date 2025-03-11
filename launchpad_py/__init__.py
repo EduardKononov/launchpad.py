@@ -1,6 +1,6 @@
 from launchpad_py.launchpad import Launchpad
-from launchpad_py.launchpad_mk2 import LaunchpadMk2
 from launchpad_py.launchpad_pro import LaunchpadPro
+from launchpad_py.launchpad_mk2 import LaunchpadMk2
 from launchpad_py.launch_control_xl import LaunchControlXL
 from launchpad_py.launch_control import LaunchControl
 from launchpad_py.launch_key_mini import LaunchKeyMini
