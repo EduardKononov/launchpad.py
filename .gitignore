@@ -1,15 +1,2 @@
-*
-
-!.gitignore
-!/images
-!/images/*
-!/examples
-!/examples/*
-!/launchpad_py
-!/launchpad_py/*
-
-!README.md
-!README
-!MANIFEST.in
-!LICENSE.txt
-!setup.py
+.idea/
+.venv/
