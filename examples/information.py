@@ -25,8 +25,8 @@ except ImportError:
 	try:
 		import launchpad
 	except ImportError:
-		print("no local copy of launchpad.py found")
-		sys.exit("error loading launchpad.py")
+		print("no local copy of launchpad_to_refactor.py found")
+		sys.exit("error loading launchpad_to_refactor.py")
 
 
 

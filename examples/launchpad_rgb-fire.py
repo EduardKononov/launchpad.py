@@ -16,7 +16,7 @@ except ImportError:
 	try:
 		import launchpad
 	except ImportError:
-		sys.exit("ERROR: loading launchpad.py failed")
+		sys.exit("ERROR: loading launchpad_to_refactor.py failed")
 
 # import pygame
 import random

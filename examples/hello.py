@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Quick usage of "launchpad.py", LEDs and buttons.
+# Quick usage of "launchpad_to_refactor.py", LEDs and buttons.
 # Works with all Launchpads: Mk1, Mk2, Mini Mk3, S/Mini, Pro, Pro Mk3, XL and LaunchKey
 # And these: Midifighter 64
 # 
@@ -17,7 +17,7 @@ except ImportError:
 	try:
 		import launchpad
 	except ImportError:
-		sys.exit("error loading launchpad.py")
+		sys.exit("error loading launchpad_to_refactor.py")
 
 import random
 from pygame import time
