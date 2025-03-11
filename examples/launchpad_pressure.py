@@ -10,7 +10,9 @@
 
 import sys
 
+import launchpad_py.launchpad_lpx
 import launchpad_py.launchpad_pro
+import launchpad_py.launchpad_pro_mk3
 
 try:
 	import launchpad_py as launchpad
@@ -29,12 +31,12 @@ def main():
 	if lp.Check( 0 ):
 		if lp.Open( 0 ):
 			mode = "pro"
-	elif launchpad.LaunchpadProMk3().Check( 0 ):
-		lp = launchpad.LaunchpadProMk3()
+	elif launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().Check(0):
+		lp = launchpad_py.launchpad_pro_mk3.LaunchpadProMk3()
 		if lp.Open( 0 ):
 			mode = "promk3"
-	elif launchpad.LaunchpadLPX().Check ( 1 ):
-		lp = launchpad.LaunchpadLPX()
+	elif launchpad_py.launchpad_lpx.LaunchpadLPX().Check (1):
+		lp = launchpad_py.launchpad_lpx.LaunchpadLPX()
 		if lp.Open( 1 ):
 			mode = "lpx"
 

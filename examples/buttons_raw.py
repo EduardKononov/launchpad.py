@@ -12,8 +12,15 @@
 import sys
 import time
 
+import launchpad_py.dicer
 import launchpad_py.launchpad
+import launchpad_py.launchpad_lpx
+import launchpad_py.launchpad_mini_mk3
+import launchpad_py.launchpad_mk2
 import launchpad_py.launchpad_pro
+import launchpad_py.launchpad_pro_mk3
+import launchpad_py.midi_fighter64
+import launchpad_py.midi_fighter_3d
 
 try:
 	import launchpad_py as launchpad
@@ -34,26 +41,26 @@ def main():
 			print("Launchpad Pro")
 			mode = "Pro"
 
-	elif launchpad.LaunchpadProMk3().Check( 0 ):
-		lp = launchpad.LaunchpadProMk3()
+	elif launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().Check(0):
+		lp = launchpad_py.launchpad_pro_mk3.LaunchpadProMk3()
 		if lp.Open( 0 ):
 			print("Launchpad Pro Mk3")
 			mode = "ProMk3"
 	
-	elif launchpad.LaunchpadMiniMk3().Check( 1 ):
-		lp = launchpad.LaunchpadMiniMk3()
+	elif launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3().Check(1):
+		lp = launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3()
 		if lp.Open( 1 ):
 			print("Launchpad Mini Mk3")
 			mode = "Pro"
 
-	elif launchpad.LaunchpadLPX().Check( 1 ):
-		lp = launchpad.LaunchpadLPX()
+	elif launchpad_py.launchpad_lpx.LaunchpadLPX().Check(1):
+		lp = launchpad_py.launchpad_lpx.LaunchpadLPX()
 		if lp.Open( 1 ):
 			print("Launchpad X")
 			mode = "Pro"
 			
-	elif launchpad.LaunchpadMk2().Check( 0 ):
-		lp = launchpad.LaunchpadMk2()
+	elif launchpad_py.launchpad_mk2.LaunchpadMk2().Check(0):
+		lp = launchpad_py.launchpad_mk2.LaunchpadMk2()
 		if lp.Open( 0 ):
 			print("Launchpad Mk2")
 			mode = "Mk2"
@@ -70,20 +77,20 @@ def main():
 	# 		print("LaunchKey (Mini)")
 	# 		mode = "LKM"
 
-	elif launchpad.Dicer().Check( 0 ):
-		lp = launchpad.Dicer()
+	elif launchpad_py.dicer.Dicer().Check(0):
+		lp = launchpad_py.dicer.Dicer()
 		if lp.Open( 0 ):
 			print("Dicer")
 			mode = "Dcr"
 
-	elif launchpad.MidiFighter64().Check( 0 ):
-		lp = launchpad.MidiFighter64()
+	elif launchpad_py.midi_fighter64.MidiFighter64().Check(0):
+		lp = launchpad_py.midi_fighter64.MidiFighter64()
 		if lp.Open( 0 ):
 			print("Midi Fighter 64")
 			mode = "F64"
 
-	elif launchpad.MidiFighter3D().Check( 0 ):
-		lp = launchpad.MidiFighter3D()
+	elif launchpad_py.midi_fighter_3d.MidiFighter3D().Check(0):
+		lp = launchpad_py.midi_fighter_3d.MidiFighter3D()
 		if lp.Open( 0 ):
 			print("Midi Fighter 3D")
 			mode = "F3D"

@@ -11,8 +11,16 @@
 
 import sys
 
+import launchpad_py.dicer
+import launchpad_py.launch_control_xl
+import launchpad_py.launch_key_mini
 import launchpad_py.launchpad
+import launchpad_py.launchpad_lpx
+import launchpad_py.launchpad_mini_mk3
+import launchpad_py.launchpad_mk2
 import launchpad_py.launchpad_pro
+import launchpad_py.launchpad_pro_mk3
+import launchpad_py.midi_fighter64
 
 try:
 	import launchpad_py as launchpad
@@ -37,8 +45,8 @@ def main():
 			print("Launchpad Pro")
 			mode = "Pro"
 
-	elif launchpad.LaunchpadProMk3().Check( 0 ):
-		lp = launchpad.LaunchpadProMk3()
+	elif launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().Check(0):
+		lp = launchpad_py.launchpad_pro_mk3.LaunchpadProMk3()
 		if lp.Open( 0 ):
 			print("Launchpad Pro Mk3")
 			mode = "ProMk3"
@@ -46,8 +54,8 @@ def main():
 	# experimental MK3 implementation
 	# The MK3 has two MIDI instances per device; we need the 2nd one.
 	# If you have two MK3s attached, its "1" for the first and "3" for the 2nd device
-	elif launchpad.LaunchpadMiniMk3().Check( 1 ):
-		lp = launchpad.LaunchpadMiniMk3()
+	elif launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3().Check(1):
+		lp = launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3()
 		if lp.Open( 1, "minimk3" ):
 			print("Launchpad Mini Mk3")
 			mode = "Pro"
@@ -55,38 +63,38 @@ def main():
 	# experimental LPX implementation
 	# Like the Mk3, the LPX also has two MIDI instances per device; we need the 2nd one.
 	# If you have two LPXs attached, its "1" for the first and "3" for the 2nd device
-	elif launchpad.LaunchpadLPX().Check( 1 ):
-		lp = launchpad.LaunchpadLPX()
+	elif launchpad_py.launchpad_lpx.LaunchpadLPX().Check(1):
+		lp = launchpad_py.launchpad_lpx.LaunchpadLPX()
 		if lp.Open( 1, "lpx" ):
 			print("Launchpad X")
 			mode = "Pro"
 			
-	elif launchpad.LaunchpadMk2().Check( 0 ):
-		lp = launchpad.LaunchpadMk2()
+	elif launchpad_py.launchpad_mk2.LaunchpadMk2().Check(0):
+		lp = launchpad_py.launchpad_mk2.LaunchpadMk2()
 		if lp.Open( 0, "mk2" ):
 			print("Launchpad Mk2")
 			mode = "Mk2"
 
-	elif launchpad.LaunchControlXL().Check( 0 ):
-		lp = launchpad.LaunchControlXL()
+	elif launchpad_py.launch_control_xl.LaunchControlXL().Check(0):
+		lp = launchpad_py.launch_control_xl.LaunchControlXL()
 		if lp.Open( 0, "control xl" ):
 			print("Launch Control XL")
 			mode = "XL"
 			
-	elif launchpad.LaunchKeyMini().Check( 0 ):
-		lp = launchpad.LaunchKeyMini()
+	elif launchpad_py.launch_key_mini.LaunchKeyMini().Check(0):
+		lp = launchpad_py.launch_key_mini.LaunchKeyMini()
 		if lp.Open( 0, "launchkey" ):
 			print("LaunchKey (Mini)")
 			mode = "LKM"
 
-	elif launchpad.Dicer().Check( 0 ):
-		lp = launchpad.Dicer()
+	elif launchpad_py.dicer.Dicer().Check(0):
+		lp = launchpad_py.dicer.Dicer()
 		if lp.Open( 0, "dicer" ):
 			print("Dicer")
 			mode = "Dcr"
 
-	elif launchpad.MidiFighter64().Check( 0 ):
-		lp = launchpad.MidiFighter64()
+	elif launchpad_py.midi_fighter64.MidiFighter64().Check(0):
+		lp = launchpad_py.midi_fighter64.MidiFighter64()
 		if lp.Open( 0 ):
 			print("Midi Fighter 64")
 			mode = "MF64"

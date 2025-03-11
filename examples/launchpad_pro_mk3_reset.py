@@ -9,6 +9,7 @@
 
 import sys
 
+import launchpad_py.launchpad_pro_mk3
 
 try:
 	import launchpad_py as launchpad
@@ -21,8 +22,8 @@ except ImportError:
 
 def main():
 
-	if launchpad.LaunchpadProMk3().Check( 0 ):
-		lp = launchpad.LaunchpadProMk3()
+	if launchpad_py.launchpad_pro_mk3.LaunchpadProMk3().Check(0):
+		lp = launchpad_py.launchpad_pro_mk3.LaunchpadProMk3()
 		if lp.Open( 0 ):
 			print("Launchpad Pro Mk3 found")
 			lp.Close()

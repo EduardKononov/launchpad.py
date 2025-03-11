@@ -12,6 +12,7 @@ import sys
 import random
 from pygame import time
 
+import launchpad_py.midi_fighter64
 
 try:
 	import launchpad_py as launchpad
@@ -26,8 +27,8 @@ def main():
 
 	mode = None
 
-	if launchpad.MidiFighter64().Check( 0 ):
-		lp = launchpad.MidiFighter64()
+	if launchpad_py.midi_fighter64.MidiFighter64().Check(0):
+		lp = launchpad_py.midi_fighter64.MidiFighter64()
 		if lp.Open( 0 ):
 			print("Midi Fighter 64")
 			mode = "F64"

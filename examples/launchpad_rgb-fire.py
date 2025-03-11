@@ -10,7 +10,11 @@
 import sys
 
 import launchpad_py.launchpad
+import launchpad_py.launchpad_lpx
+import launchpad_py.launchpad_mini_mk3
+import launchpad_py.launchpad_mk2
 import launchpad_py.launchpad_pro
+import launchpad_py.launchpad_pro_mk3
 
 try:
 	import launchpad_py as launchpad
@@ -303,7 +307,7 @@ class LpDisplay():
 
 		# try the first Mk2
 		if lp.Check( 0, "mk2" ):
-			lp = launchpad.LaunchpadMk2()
+			lp = launchpad_py.launchpad_mk2.LaunchpadMk2()
 			if lp.Open( 0, "mk2" ):
 				print( " - Launchpad Mk2: OK" )
 				self.mode = "mk2"
@@ -313,7 +317,7 @@ class LpDisplay():
 			
 		# try the first Mini Mk3
 		elif lp.Check( 1, "minimk3" ):
-			lp = launchpad.LaunchpadMiniMk3()
+			lp = launchpad_py.launchpad_mini_mk3.LaunchpadMiniMk3()
 			if lp.Open( 1, "minimk3" ):
 				print( " - Launchpad Mini Mk3: OK" )
 				self.mode = "mk3"
@@ -333,7 +337,7 @@ class LpDisplay():
 
 		# try the first Pro Mk3
 		elif lp.Check( 0, "mk3" ):
-			lp = launchpad.LaunchpadProMk3()
+			lp = launchpad_py.launchpad_pro_mk3.LaunchpadProMk3()
 			if lp.Open( 0 ):
 				print( " - Launchpad Pro Mk3: OK" )
 				self.mode = "promk3"
@@ -345,7 +349,7 @@ class LpDisplay():
 		# Notice that this is already built-in in the LPX class' methods Check() and Open,
 		# but we're using the one from above!
 		elif lp.Check( 1, "Launchpad X") or lp.Check( 1, "LPX" ):
-			lp = launchpad.LaunchpadLPX()
+			lp = launchpad_py.launchpad_lpx.LaunchpadLPX()
 			# Open() includes looking for "LPX" and "Launchpad X"
 			if lp.Open( 1 ):
 				print( " - Launchpad X: OK" )
